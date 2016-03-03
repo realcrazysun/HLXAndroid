@@ -16,4 +16,7 @@ public interface HLXAPIService {
     @GET("/v1_4/home/activities")
     Call<RootObject> getHomeActivities();
 
+    @GET("/v1_4/home/get-recommend")
+    Call<RootObject> getHomeRecommend();
+
 }

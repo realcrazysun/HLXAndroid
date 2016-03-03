@@ -1,4 +1,4 @@
-package com.polyent.hlx.ui.bean;
+package com.polyent.hlx.ui.bean.dynamic;
 
 /**
  * Created by crazysun on 16/3/3.

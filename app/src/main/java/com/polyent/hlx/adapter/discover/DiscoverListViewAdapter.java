@@ -1,7 +1,6 @@
-package com.polyent.hlx.adapter;
+package com.polyent.hlx.adapter.discover;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,14 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.polyent.hlx.R;
+import com.polyent.hlx.adapter.MyBaseAdapter;
 import com.polyent.hlx.base.NoScrollGridView;
-import com.polyent.hlx.ui.bean.DiscoverItemModel;
-import com.polyent.hlx.ui.bean.ItemModel;
+import com.polyent.hlx.ui.bean.discover.DiscoverItemModel;
+import com.polyent.hlx.ui.bean.discover.ItemModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

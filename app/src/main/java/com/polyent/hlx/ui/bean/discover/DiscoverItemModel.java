@@ -1,4 +1,4 @@
-package com.polyent.hlx.ui.bean;
+package com.polyent.hlx.ui.bean.discover;
 
 import java.util.ArrayList;
 

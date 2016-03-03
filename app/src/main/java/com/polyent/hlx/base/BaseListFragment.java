@@ -2,32 +2,20 @@ package com.polyent.hlx.base;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ListFragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.polyent.hlx.R;
-import com.polyent.hlx.adapter.DiscoverListViewAdapter;
 import com.polyent.hlx.adapter.MyBaseAdapter;
 import com.polyent.hlx.api.HLXAPIService;
 import com.polyent.hlx.net.ServiceGenerator;
-import com.polyent.hlx.ui.bean.DiscoverItemModel;
 import com.polyent.hlx.ui.bean.RootObject;
-import com.polyent.hlx.ui.dynamic.AnimalListAdapter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -71,6 +59,7 @@ public class BaseListFragment extends ListFragment {
         View view = inflater.inflate(R.layout.fragment_baselist, container, false);
         ButterKnife.bind(this, view);
 
+        listView.setDividerHeight(getDividerHeight());
         //设置刷新时动画的颜色，可以设置4个
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
 
@@ -107,6 +96,7 @@ public class BaseListFragment extends ListFragment {
         this.git = ServiceGenerator.createService(HLXAPIService.class);
         adapter = getAdapter();
         setListAdapter(adapter);
+
     }
 
     @Override
@@ -202,5 +192,9 @@ public class BaseListFragment extends ListFragment {
 
     public List parseRootObjToList(RootObject object) {
         return null;
+    }
+
+    public int getDividerHeight(){
+        return 1;
     }
 }

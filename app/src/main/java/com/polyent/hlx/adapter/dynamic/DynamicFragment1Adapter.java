@@ -1,4 +1,4 @@
-package com.polyent.hlx.adapter;
+package com.polyent.hlx.adapter.dynamic;
 
 import android.content.Context;
 import android.view.View;
@@ -9,12 +9,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.internal.LinkedTreeMap;
 import com.polyent.hlx.R;
-import com.polyent.hlx.ui.bean.HomeIndexInfoListItemModel;
-
-import java.util.HashMap;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import com.polyent.hlx.adapter.MyBaseAdapter;
+import com.polyent.hlx.ui.bean.dynamic.HomeIndexInfoListItemModel;
 
 /**
  * Created by crazysun on 16/3/2.

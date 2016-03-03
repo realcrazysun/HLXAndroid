@@ -1,4 +1,4 @@
-package com.polyent.hlx.adapter;
+package com.polyent.hlx.adapter.dynamic;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

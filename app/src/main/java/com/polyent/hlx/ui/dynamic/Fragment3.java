@@ -2,13 +2,10 @@ package com.polyent.hlx.ui.dynamic;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.polyent.hlx.adapter.DynamicFragment1Adapter;
-import com.polyent.hlx.adapter.DynamicFragment3Adapter;
+import com.polyent.hlx.adapter.dynamic.DynamicFragment3Adapter;
 import com.polyent.hlx.adapter.MyBaseAdapter;
 import com.polyent.hlx.base.BaseListFragment;
-import com.polyent.hlx.ui.bean.DiscoverItemModel;
-import com.polyent.hlx.ui.bean.HomeActivity;
-import com.polyent.hlx.ui.bean.HomeIndexInfoModel;
+import com.polyent.hlx.ui.bean.dynamic.HomeActivity;
 import com.polyent.hlx.ui.bean.RootObject;
 
 import java.util.List;

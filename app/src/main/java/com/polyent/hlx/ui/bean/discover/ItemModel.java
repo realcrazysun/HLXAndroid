@@ -1,4 +1,4 @@
-package com.polyent.hlx.ui.bean;
+package com.polyent.hlx.ui.bean.discover;
 
 /**
  * Created by crazysun on 16/3/1.
