@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.polyent.hlx.base.BaseViewPagerFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <!-- 导航标题栏 -->
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/pager_tabstrip"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:pstsShouldExpand="true"
+        app:pstsUnderlineHeight = "2dp"
+        app:pstsIndicatorHeight= "2dp"
+        app:pstsTabBackground="@color/background_tab_pressed"
+        app:pstsDividerColor="@android:color/transparent"
+        >
+    </com.astuetz.PagerSlidingTabStrip>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:layout_below="@id/pager_tabstrip">
+    </android.support.v4.view.ViewPager>
+
+    <!--<com.polyent.hlx.ui.empty.EmptyLayout-->
+        <!--android:id="@+id/error_layout"-->
+        <!--style="@style/fill_fill"-->
+        <!--android:visibility="gone" />-->
+
+</RelativeLayout>

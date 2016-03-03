@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.polyent.hlx.ui.dynamic.DynamicFragment">
+
+    <fragment
+        android:id="@+id/dynamicbasefragment"
+        android:name="com.polyent.hlx.ui.TitleFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <fragment
+            android:id="@+id/viewpage"
+            android:name="com.polyent.hlx.ui.dynamic.DynamicViewPagerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+        </fragment>
+    </FrameLayout>
+
+
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="#ffffff"-->
+        <!--android:text="lalala" />-->
+    <!--<FrameLayout-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<Button-->
+    <!--android:layout_width="28dp"-->
+    <!--android:layout_height="28dp"-->
+    <!--android:background="@mipmap/icon_avatar_nologin"-->
+    <!--android:id="@+id/title_bar_left_menu"-->
+    <!--android:layout_gravity="left|center_vertical"-->
+    <!--android:layout_marginLeft="10dp"/>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:padding="7dp"-->
+    <!--android:text="RESideMenu DEMO"-->
+    <!--android:textSize="24sp"-->
+    <!--android:textColor="#999999"-->
+    <!--android:layout_gravity="center"/>-->
+
+    <!--<Button-->
+    <!--android:layout_width="28dp"-->
+    <!--android:layout_height="28dp"-->
+    <!--android:background="@mipmap/icon_search"-->
+    <!--android:id="@+id/title_bar_right_menu"-->
+    <!--android:layout_gravity="right|center_vertical"-->
+    <!--android:layout_marginRight="10dp"/>-->
+    <!--</FrameLayout>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:text="@string/hello_blank_fragment" />-->
+
+</LinearLayout>
