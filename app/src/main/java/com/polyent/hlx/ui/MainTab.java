@@ -17,13 +17,13 @@ public enum MainTab {
     Tab1(0, R.string.main_tab_1, R.drawable.tab_icon_1,
             DynamicFragment.class),
     Tab2(1, R.string.main_tab_2, R.drawable.tab_icon_2,
-            Fragment.class),
+            CommunityFragment.class),
 
     Tab3(2, R.string.main_tab_3, R.drawable.tab_icon_3,
             Fragment.class),
 
     Tab4(3, R.string.main_tab_4, R.drawable.tab_icon_4,
-            Fragment.class),
+            ChatFragment.class),
 
     Tab5(4, R.string.main_tab_5, R.drawable.tab_icon_5,
             DiscoverFragment.class);

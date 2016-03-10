@@ -33,6 +33,7 @@ public class DiscoverContentFragment extends BaseListFragment {
     public Call getCall() {
         return git.getDiscoverInfo();
     }
+
     @Override
     public List parseRootObjToList(RootObject object){
         Gson gson = new Gson();

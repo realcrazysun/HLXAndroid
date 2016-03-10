@@ -38,9 +38,13 @@ public class BaseListFragment extends ListFragment {
 
     protected MyBaseAdapter adapter;
 
+
     protected int curPage = 1;
 
+    protected LayoutInflater mInflater;
+
     private View rootView;
+
     /**
      * @描述 在onCreateView中加载布局
      */
@@ -48,20 +52,21 @@ public class BaseListFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //避免重复加载
-        if(rootView!=null){
+        if (rootView != null) {
             ViewGroup parent = (ViewGroup) rootView.getParent();
             if (parent != null) {
                 parent.removeView(rootView);
             }
             return rootView;
         }
-
+        mInflater = inflater;
         View view = inflater.inflate(R.layout.fragment_baselist, container, false);
         ButterKnife.bind(this, view);
 
         listView.setDividerHeight(getDividerHeight());
         //设置刷新时动画的颜色，可以设置4个
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
+
 
         OnRefreshListener listener = new OnRefreshListener() {
             @Override
@@ -78,6 +83,7 @@ public class BaseListFragment extends ListFragment {
         });
         listener.onRefresh();
 
+
         if (isNeedLoad()) {
             swipeContainer.setOnLoadListener(new RefreshLayout.OnLoadListener() {
                 @Override
@@ -87,6 +93,9 @@ public class BaseListFragment extends ListFragment {
             });
         }
         rootView = view;
+
+
+
         return rootView;
     }
 
@@ -94,9 +103,10 @@ public class BaseListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.git = ServiceGenerator.createService(HLXAPIService.class);
+
+
         adapter = getAdapter();
         setListAdapter(adapter);
-
     }
 
     @Override
@@ -108,6 +118,15 @@ public class BaseListFragment extends ListFragment {
     //发送网络请求
     public void sendRequest(int page, final boolean refresh) {
         Call call = getCall();
+        if (call == null) {
+            swipeContainer.post(new Runnable() {
+                @Override
+                public void run() {
+                    swipeContainer.setRefreshing(false);
+                }
+            });
+            return;
+        }
         call.enqueue(new Callback<RootObject>() {
             @Override
             public void onResponse(Response<RootObject> response) {
@@ -141,8 +160,14 @@ public class BaseListFragment extends ListFragment {
                 }
                 //warning 这里经常抛出异常 应该找到原因
                 try {
-                    swipeContainer.setRefreshing(false);
-                    swipeContainer.setLoading(false);
+                    swipeContainer.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            swipeContainer.setRefreshing(false);
+                            swipeContainer.setLoading(false);
+                        }
+                    });
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -152,8 +177,13 @@ public class BaseListFragment extends ListFragment {
 
             @Override
             public void onFailure(Throwable t) {
-                swipeContainer.setRefreshing(false);
-                swipeContainer.setLoading(false);
+                swipeContainer.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeContainer.setRefreshing(false);
+                        swipeContainer.setLoading(false);
+                    }
+                });
                 System.out.println("failed");
             }
         });
@@ -173,10 +203,14 @@ public class BaseListFragment extends ListFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
     public boolean isNeedLoad() {
+        return true;
+    }
+
+    public boolean isNeedRefresh() {
         return true;
     }
 
@@ -194,7 +228,9 @@ public class BaseListFragment extends ListFragment {
         return null;
     }
 
-    public int getDividerHeight(){
+    public int getDividerHeight() {
         return 1;
     }
+
+
 }

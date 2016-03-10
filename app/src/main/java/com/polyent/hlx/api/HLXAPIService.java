@@ -19,4 +19,7 @@ public interface HLXAPIService {
     @GET("/v1_4/home/get-recommend")
     Call<RootObject> getHomeRecommend();
 
+    @GET("/v1_4/forum/juhe")
+    Call<RootObject> getForumJuhe();
+
 }
