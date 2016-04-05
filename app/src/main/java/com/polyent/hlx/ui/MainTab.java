@@ -20,7 +20,7 @@ public enum MainTab {
             CommunityFragment.class),
 
     Tab3(2, R.string.main_tab_3, R.drawable.tab_icon_3,
-            Fragment.class),
+            LocalCircleFragment.class),
 
     Tab4(3, R.string.main_tab_4, R.drawable.tab_icon_4,
             ChatFragment.class),

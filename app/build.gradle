@@ -25,7 +25,7 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.specyci:residemenu:1.6'
+    compile 'com.specyci:residemenu:1.6+'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:support-v4:23.1.1'

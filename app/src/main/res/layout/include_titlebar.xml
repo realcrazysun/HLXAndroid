@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:background="#e7abff"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <ImageView
         android:id="@+id/titlebar_iv_left"
@@ -19,12 +21,25 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
-        android:layout_gravity="center"
-        android:textSize="20dp"
         android:textColor="@color/white"
-        android:visibility="gone"/>
+        android:textSize="20dp"
+        android:visibility="gone" />
+
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/pager_tabstrip"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="gone"
+        app:pstsShouldExpand="true"
+        app:pstsUnderlineHeight = "2dp"
+        app:pstsIndicatorHeight= "2dp"
+        app:pstsDividerColor="@android:color/transparent">
+
+    </com.astuetz.PagerSlidingTabStrip>
 
     <ImageView
         android:id="@+id/titlebar_iv_right"

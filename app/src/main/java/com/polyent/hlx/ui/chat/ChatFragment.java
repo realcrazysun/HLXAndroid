@@ -1,6 +1,7 @@
 package com.polyent.hlx.ui.chat;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,7 +33,6 @@ import retrofit2.Call;
 public class ChatFragment extends Fragment {
 
 
-
     private View rootView;
 
     public ChatFragment() {
@@ -47,10 +47,19 @@ public class ChatFragment extends Fragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_chat, null);
             ButterKnife.bind(this, rootView);
-            TitleFragment titleFragment =  (TitleFragment)getChildFragmentManager().findFragmentById(R.id.titlefragment);
+            TitleFragment titleFragment = (TitleFragment) getChildFragmentManager().findFragmentById(R.id.titlefragment);
             titleFragment.setTitle("聊天");
             titleFragment.setTitlebarIvRightImg(R.mipmap.icon_contacts);
 
+            titleFragment.setRightImgClickEvent(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), ContactActivity.class);
+//                intent.putExtra(ContactActivity.DATA_FRESH_NEWS, mFreshNews);
+//                intent.putExtra(ContactActivity.DATA_POSITION, position);
+                    getActivity().startActivity(intent);
+                }
+            });
         }
         //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
         ViewGroup parent = (ViewGroup) rootView.getParent();

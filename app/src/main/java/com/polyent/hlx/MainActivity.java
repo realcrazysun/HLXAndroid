@@ -39,45 +39,36 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
         ButterKnife.bind(this);
 
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//
-//            setTranslucentStatus(this, true);
-//
-//        }
         //透明状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //透明导航栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatus(true);
+        }
         SystemBarTintManager tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
 
         // 使用颜色资源
         tintManager.setStatusBarTintResource(R.color.status_color);
+
+
         initTabs();
     }
 
     @TargetApi(19)
-    private static void setTranslucentStatus(Activity activity, boolean on) {
+    private  void setTranslucentStatus( boolean on) {
 
-        Window win = activity.getWindow();
-
+        Window win = getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
-
         final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-
         if (on) {
-
             winParams.flags |= bits;
-
         } else {
-
             winParams.flags &= ~bits;
-
         }
-
         win.setAttributes(winParams);
-
     }
 
     //初始化tabs

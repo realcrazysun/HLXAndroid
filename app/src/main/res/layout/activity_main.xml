@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true"
     android:windowTranslucentNavigation = "true"
     tools:context="com.polyent.hlx.MainActivity">
 

@@ -1,6 +1,7 @@
 package com.polyent.hlx.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
@@ -45,6 +46,8 @@ public class BaseListFragment extends ListFragment {
 
     private View rootView;
 
+    private OnRefreshListener listener;
+
     /**
      * @描述 在onCreateView中加载布局
      */
@@ -68,32 +71,42 @@ public class BaseListFragment extends ListFragment {
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
 
 
-        OnRefreshListener listener = new OnRefreshListener() {
+        listener = new OnRefreshListener() {
             @Override
             public void onRefresh() {
-                sendRequest(1, true);
+                Thread thread = new Thread() {
+                    @Override
+                    public void run() {
+                        sendRequest(1, true);
+                    }
+                };
+                thread.start();
+
             }
         };
-        swipeContainer.setOnRefreshListener(listener);
-        swipeContainer.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeContainer.setRefreshing(true);
-            }
-        });
-        listener.onRefresh();
+        if (isNeedRefresh()) {
+            swipeContainer.setOnRefreshListener(listener);
+            swipeContainer.post(new Runnable() {
+                @Override
+                public void run() {
+                    swipeContainer.setProgressViewOffset(false, 0, BaseListFragment.dip2px(getContext(), 24));
+                    swipeContainer.setRefreshing(true);
+                }
+            });
+            listener.onRefresh();
+        }
 
 
         if (isNeedLoad()) {
             swipeContainer.setOnLoadListener(new RefreshLayout.OnLoadListener() {
                 @Override
                 public void onLoad() {
+                    swipeContainer.setProgressViewOffset(false, 0, 100);
                     sendRequest(curPage, false);
                 }
             });
         }
         rootView = view;
-
 
 
         return rootView;
@@ -159,18 +172,18 @@ public class BaseListFragment extends ListFragment {
                     }
                 }
                 //warning 这里经常抛出异常 应该找到原因
-                try {
-                    swipeContainer.post(new Runnable() {
-                        @Override
-                        public void run() {
+
+                swipeContainer.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
                             swipeContainer.setRefreshing(false);
                             swipeContainer.setLoading(false);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                    });
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                    }
+                });
 
 
             }
@@ -203,7 +216,17 @@ public class BaseListFragment extends ListFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        ButterKnife.unbind(this);
+        swipeContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    swipeContainer.setRefreshing(false);
+                    swipeContainer.setLoading(false);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public boolean isNeedLoad() {
@@ -232,5 +255,8 @@ public class BaseListFragment extends ListFragment {
         return 1;
     }
 
-
+    public static int dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
 }

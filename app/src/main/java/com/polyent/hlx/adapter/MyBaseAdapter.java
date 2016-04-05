@@ -49,6 +49,7 @@ public abstract class MyBaseAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
+
         return models.get(position);
     }
 
